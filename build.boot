@@ -5,7 +5,7 @@
                  [adzerk/boot-cljs          "1.7.228-2"]
                  [hoplon                    "6.0.0-alpha17"]]
  :source-paths #{"src"}
- :resource-paths #{"res"})
+ :resource-paths #{"php" "res"})
 
 (require '[boot.util :as butl]
          '[adzerk.boot-cljs   :refer [cljs]]
@@ -17,7 +17,7 @@
     (let [f (slurp "rsync.edn")
           {:keys [host user source destination]} (edn/read-string f)]
       (butl/info "Rsync files to server\n")
-      (sh "rsync" "-a" "-e" "ssh"
+      (sh "rsync" "-a" "-e" "ssh" "--delete"
           source (str user "@" host ":" destination))
       (butl/info "Rsync completed\n"))
     (catch Exception e
