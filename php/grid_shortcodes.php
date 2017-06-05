@@ -3,7 +3,11 @@
 class GridShorcodes {
     const COLS = 12;
 
-    public function __construct() {
+    private $resources;
+
+    public function __construct($resources) {
+        $this->resources = $resources;
+
         $this->registerShortcodes();
     }
 
@@ -17,15 +21,18 @@ class GridShorcodes {
     }
 
     public function column($attrs, $content, $name) {
-        $col_num = end(explode($name, '_'));
-        $c  = "<div class=\"lsgc_grid_col_{$col_num}\">";
+        $this->resources->enqueue_style_grid();
+        $name_split = explode('_', $name);
+        $col_num = end($name_split);
+        $c  = "<div class=\"lsgc_col_{$col_num}\">";
+        $c .= '<div class="lsgc_inner">';
         $c .= do_shortcode($content);
-        $c .= "</div>";
+        $c .= '</div>';
+        $c .= '</div>';
         return $c;
     }
 
     public function row($attrs, $content) {
-        $col_num = end(explode($name, '_'));
         $c  = "<div class=\"lsgc_row\">";
         $c .= do_shortcode($content);
         $c .= "</div>";
