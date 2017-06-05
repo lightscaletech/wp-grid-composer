@@ -1,1 +1,2 @@
-{:require [wp-grid-editor.core]}
+{:require [wp-grid-editor.core]
+ :compiler-options {:asset-path "/wp-content/plugins/wp-grid-composer/js/editor.out"}}
