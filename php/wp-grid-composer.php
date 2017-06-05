@@ -1,6 +1,6 @@
 <?php
 /*
-  Plugin Name: WP Grid Composor
+  Plugin Name: WP Grid Composer
   Description: A drag and drop grid based editor posts and pages.
   Version:     0.0.1
   Author:      Lightscale Tech Ltd
@@ -9,8 +9,24 @@
   License URI: https://www.gnu.org/licenses/gpl-2.0.html
   Text Domain: lsgc
 */
-$dir = plugin_dir_path(__FILE__);
 
-require_once("{$dir}/grid_shortcodes.php");
+define('LSGC_DIR', plugin_dir_path(__FILE__));
+define('LSGC_URL', plugin_dir_url(__FILE__));
 
-new GridShorcodes();
+require_once(LSGC_DIR . "/grid_shortcodes.php");
+require_once(LSGC_DIR . "/resources.php");
+require_once(LSGC_DIR . "/editor.php");
+
+class WPGridComposer {
+
+    private $resources = NULL;
+
+    function __construct() {
+        $this->resources = new Resources();
+        new Editor($this->resources);
+        new GridShorcodes($this->resources);
+    }
+
+}
+
+new WPGridComposer();
