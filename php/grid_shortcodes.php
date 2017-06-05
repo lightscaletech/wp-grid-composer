@@ -13,7 +13,6 @@ class GridShorcodes {
 
     private function registerShortcodes() {
         for ($i = 1; $i <= GridShorcodes::COLS; $i++) {
-            echo $i;
             add_shortcode("lsgc_col_{$i}", array($this, 'column'));
         }
 
