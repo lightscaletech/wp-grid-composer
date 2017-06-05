@@ -6,7 +6,8 @@
    [hoplon.jquery]
    [hoplon.core :as h]
    [javelin.core :as j]
-   [wp-grid-editor.editor :as e]))
+   [wp-grid-editor.editor :as e]
+   [wp-grid-editor.editor.state :as s]))
 
 (j/defc wordpress-editor true)
 
@@ -15,8 +16,10 @@
 (defn change-editor []
   (let [wpe(js/jQuery (str "#" wordpress-editor-id))]
     (if @wordpress-editor
-      (.css wpe (clj->js {:visibility "collapse"}))
-      (.css wpe (clj->js {:visibility "visible"}))))
+      (do (.css wpe (clj->js {:visibility "collapse"}))
+          (s/enable!))
+      (do (.css wpe (clj->js {:visibility "visible"}))
+          (s/disable!))))
   (swap! wordpress-editor not))
 
 (h/defelem switch-editor []
