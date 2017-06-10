@@ -1,6 +1,6 @@
 <?php
 
-class AjaxAPI {
+class LSGC_AjaxAPI {
 
     protected $shortcodeRegistry = NULL;
 
@@ -37,7 +37,7 @@ class AjaxAPI {
     }
 }
 
-class ModuleAPI extends AjaxAPI {
+class LSGC_ModuleAPI extends LSGC_AjaxAPI {
 
     private $actions = array(
         'getModulesSelection',

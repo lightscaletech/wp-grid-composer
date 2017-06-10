@@ -1,6 +1,6 @@
 <?php
 
-class Editor {
+class LSGC_Editor {
 
     private $resources;
 

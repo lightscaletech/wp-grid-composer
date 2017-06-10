@@ -1,6 +1,6 @@
 <?php
 
-class ShortcodeRegistry {
+class LSGC_ShortcodeRegistry {
 
     /**
      * {

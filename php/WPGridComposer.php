@@ -15,24 +15,26 @@ define('LSGC_URL', plugin_dir_url(__FILE__));
 
 
 require_once(LSGC_DIR . "Resources.php");
+require_once(LSGC_DIR . "Settings.php");
 require_once(LSGC_DIR . "ModuleRegistry.php");
 require_once(LSGC_DIR . "AjaxAPI.php");
 require_once(LSGC_DIR . "GridShortcodes.php");
 require_once(LSGC_DIR . "Editor.php");
 
-class WPGridComposer {
+class LSGC_WPGridComposer {
 
     private $resources = NULL;
     private $shortcodeRegistry = NULL;
 
     function __construct() {
-        $this->resources = new Resources();
-        $this->shortcodeRegistry = new ShortcodeRegistry();
-        new ModuleAPI($this->shortcodeRegistry);
-        new Editor($this->resources);
-        new GridShorcodes($this->resources);
+        $this->resources = new LSGC_Resources();
+        $this->shortcodeRegistry = new LSGC_ShortcodeRegistry();
+        new LSGC_SettingsManager();
+        new LSGC_ModuleAPI($this->shortcodeRegistry);
+        new LSGC_Editor($this->resources);
+        new LSGC_GridShorcodes($this->resources);
     }
 
 }
 
-new WPGridComposer();
+new LSGC_WPGridComposer();

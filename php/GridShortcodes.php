@@ -1,6 +1,6 @@
 <?php
 
-class GridShorcodes {
+class LSGC_GridShorcodes {
     const COLS = 12;
 
     private $resources;
@@ -13,7 +13,7 @@ class GridShorcodes {
     }
 
     private function registerShortcodes() {
-        for ($i = 1; $i <= GridShorcodes::COLS; $i++) {
+        for ($i = 1; $i <= static::COLS; $i++) {
             add_shortcode("lsgc_col_{$i}", array($this, 'column'));
         }
 
@@ -51,7 +51,7 @@ class GridShorcodes {
     public function registerModules($in) {
         $mods = array();
 
-        for ($i = 1; $i <= GridShorcodes::COLS; $i++){
+        for ($i = 1; $i <= static::COLS; $i++){
             $mods[] = $this->makeColMod($i);
         }
 

@@ -1,6 +1,6 @@
 <?php
 
-class Resources {
+class LSGC_Resources {
 
     const JS_EDITOR  = 'lsgc_js_editor';
 
@@ -15,19 +15,19 @@ class Resources {
     }
 
     function register_style_grid() {
-        wp_register_style(Resources::CSS_GRID, LSGC_URL . '/css/grid.css');
+        wp_register_style(static::CSS_GRID, LSGC_URL . '/css/grid.css');
     }
 
     function register_style_editor() {
-        wp_register_style(Resources::CSS_EDITOR, LSGC_URL . '/css/editor.css');
+        wp_register_style(static::CSS_EDITOR, LSGC_URL . '/css/editor.css');
     }
 
     function register_js_editor() {
-        wp_register_script(Resources::JS_EDITOR, LSGC_URL . '/js/editor.js', array(),
+        wp_register_script(static::JS_EDITOR, LSGC_URL . '/js/editor.js', array(),
                            '0.0.1', TRUE);
     }
 
-    function enqueue_style_grid() { wp_enqueue_style(Resources::CSS_GRID);}
-    function enqueue_style_editor() { wp_enqueue_style(Resources::CSS_EDITOR);}
-    function enqueue_js_editor() { wp_enqueue_script(Resources::JS_EDITOR);}
+    function enqueue_style_grid() { wp_enqueue_style(static::CSS_GRID);}
+    function enqueue_style_editor() { wp_enqueue_style(static::CSS_EDITOR);}
+    function enqueue_js_editor() { wp_enqueue_script(static::JS_EDITOR);}
 }
