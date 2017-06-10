@@ -16,9 +16,11 @@
 (defn change-editor []
   (let [wpe(js/jQuery (str "#" wordpress-editor-id))]
     (if @wordpress-editor
-      (do (.css wpe (clj->js {:visibility "collapse"}))
+      (do (.css wpe (clj->js {:visibility "collapse"
+                              :height "0"}))
           (s/enable!))
-      (do (.css wpe (clj->js {:visibility "visible"}))
+      (do (.css wpe (clj->js {:visibility "visible"
+                              :height "initial"}))
           (s/disable!))))
   (swap! wordpress-editor not))
 
