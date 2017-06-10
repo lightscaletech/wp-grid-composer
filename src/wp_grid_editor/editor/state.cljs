@@ -3,7 +3,8 @@
    [javelin.core :as j])
   (:require
    [javelin.core :as j]
-   [clojure.string :as s]))
+   [clojure.string :as s]
+   [wp-grid-editor.ajax :as ajax]))
 
 (j/defc main "")
 
@@ -40,10 +41,10 @@
                 [r' bc]
                 (recur (str r' csc) (dec count) bc)))))))))
 
-(defn make-content-node [c] {:type :content :content c})
+(defn make-content-node [c] {:element :content :content c})
 
 (defn make-sc-node [sn sp sc selfc]
-  (let [n {:name sn :type :shortcode
+  (let [n {:key sn :element :shortcode
            :self-closing selfc
            :parameters (shortcode-params sp)}]
     (if selfc n (assoc n :nodes sc))))
@@ -65,9 +66,22 @@
                 r'
                 (recur r' restsc)))))))))
 
-(j/defc= cmain (map-shortcodes main))
+(defn shortcode-keys [sn]
+  (loop [r [] n sn]
+    (let [{:keys [key element self-closing nodes]} (first n)
+          nn (rest n)]
+      (if (= element :shortcode)
+        (let [r' (conj r key)
+              r'' (if (or self-closing (empty? nodes))
+                    r' (into r' (shortcode-keys nodes)))]
+          (if (empty? nn) r'' (recur r'' nn)))
+        (if (empty? nn) r (recur r nn))))))
 
-(j/cell= (.log js/console (clj->js cmain)))
+(j/defc= shortcodes (shortcode-keys main))
+(j/defc= ushortcodes (distinct shortcodes))
+
+(j/defc display-mods [])
+(j/defc= display-mods-map (reduce #(assoc %1 (-> %2 :key) %2) {} display-mods))
 
 ;; Keeping grid composer in sync with default WP editor
 
@@ -77,21 +91,20 @@
 
 (defn get-wp-editor-content []
   (if-let [t (get-tmce-editor)]
-    (do
-      (.log js/console "Test getting rtext")
-      (.getContent t))
-    (do
-      (.log js/console "Test getting ptext")
-      (.val (get-ptext-editor)))))
+    (.getContent t)
+    (.val (get-ptext-editor))))
 
 (defn set-wp-editor-content [c]
   (if-let [t (get-tmce-editor)]
-    (do
-      (.log js/console "Test setting rtext")
-      (.setContent t c))
-    (do
-      (.log js/console "Test setting ptext")
-      (.val (get-ptext-editor) c))))
+    (.setContent t c)
+    (.val (get-ptext-editor) c)))
 
-(defn enable! [] (reset! main (get-wp-editor-content)))
-(defn disable! [] (set-wp-editor-content @main))
+(defn load-display-moduals []
+  (ajax/post-cell "getModualsDisplayIn"
+             {:keys @ushortcodes} display-mods))
+
+(defn enable! []
+  (reset! main (map-shortcodes (get-wp-editor-content)))
+  (load-display-moduals))
+
+(defn disable! [] #_(set-wp-editor-content @main))
