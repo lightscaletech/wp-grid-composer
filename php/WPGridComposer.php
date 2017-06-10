@@ -14,11 +14,11 @@ define('LSGC_DIR', plugin_dir_path(__FILE__));
 define('LSGC_URL', plugin_dir_url(__FILE__));
 
 
-require_once(LSGC_DIR . "resources.php");
-require_once(LSGC_DIR . "shortcode_registry.php");
+require_once(LSGC_DIR . "Resources.php");
+require_once(LSGC_DIR . "ModuleRegistry.php");
 require_once(LSGC_DIR . "AjaxAPI.php");
-require_once(LSGC_DIR . "grid_shortcodes.php");
-require_once(LSGC_DIR . "editor.php");
+require_once(LSGC_DIR . "GridShortcodes.php");
+require_once(LSGC_DIR . "Editor.php");
 
 class WPGridComposer {
 
