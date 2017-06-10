@@ -12,7 +12,7 @@
 (h/defelem self-closing-shortcode [{:keys [elem]}]
   (j/cell-let
    [{:keys [parameters key] n :name} elem]
-   [(menus/modual)
+   [(menus/module)
     (h/h3 (j/cell= (or n key)))
     (h/ul
      (h/loop-tpl
@@ -24,12 +24,12 @@
    [{:keys [key tile_classes] n :name} elem]
    (h/div
     :class tile_classes
-    (menus/modual)
+    (menus/module)
     (h/h3 (j/cell= (or n key)))
     (content))))
 
 (h/defelem content [{{:keys [content]} :elem}]
-  [(menus/modual)
+  [(menus/module)
    (h/div content)])
 
 (defn map-display [elems display]

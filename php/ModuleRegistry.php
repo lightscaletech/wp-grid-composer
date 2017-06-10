@@ -81,13 +81,13 @@ class ShortcodeRegistry {
     }
 }
 
-function lsgc_add_modual($all, $new) {
+function lsgc_add_module($all, $new) {
     return ($all[] = $new);
 }
 
-function lsgc_add_moduals($all, $new) {
+function lsgc_add_modules($all, $new) {
     foreach ($new as $m) {
-        $all = lsgc_add_modual($all, $new);
+        $all = lsgc_add_module($all, $new);
     }
     return $all;
 }

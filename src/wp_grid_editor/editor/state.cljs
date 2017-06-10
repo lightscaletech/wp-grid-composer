@@ -99,12 +99,12 @@
     (.setContent t c)
     (.val (get-ptext-editor) c)))
 
-(defn load-display-moduals []
-  (ajax/post-cell "getModualsDisplayIn"
+(defn load-display-modules []
+  (ajax/post-cell "getModulesDisplayIn"
              {:keys @ushortcodes} display-mods))
 
 (defn enable! []
   (reset! main (map-shortcodes (get-wp-editor-content)))
-  (load-display-moduals))
+  (load-display-modules))
 
 (defn disable! [] #_(set-wp-editor-content @main))

@@ -37,12 +37,12 @@ class AjaxAPI {
     }
 }
 
-class ModualAPI extends AjaxAPI {
+class ModuleAPI extends AjaxAPI {
 
     private $actions = array(
-        'getModualsSelection',
-        'getModualsDisplayIn',
-        'getModualEdit');
+        'getModulesSelection',
+        'getModulesDisplayIn',
+        'getModuleEdit');
 
     public function __construct($scr) {
         parent::__construct($scr, $this->actions);
@@ -52,16 +52,16 @@ class ModualAPI extends AjaxAPI {
         $this->shortcodeRegistry->load();
     }
 
-    public function getModualsSelection() {
+    public function getModulesSelection() {
         return $this->shortcodeRegistry->getAllSmall();
     }
 
-    public function getModualsDisplayIn() {
+    public function getModulesDisplayIn() {
         $keys = $_POST['keys'];
         return $this->shortcodeRegistry->getAllIn($keys);
     }
 
-    public function getModualEdit() {
+    public function getModuleEdit() {
         $key = $_POST['key'];
         return $this->shortcodeRegistry->get($key);
     }

@@ -10,5 +10,5 @@
   (h/div :class "lsgc_main_menu"))
 
 
-(h/defelem modual []
-  (h/div :class "lsgc_modual_menu"))
+(h/defelem module []
+  (h/div :class "lsgc_module_menu"))

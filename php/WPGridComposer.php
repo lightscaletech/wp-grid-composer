@@ -28,7 +28,7 @@ class WPGridComposer {
     function __construct() {
         $this->resources = new Resources();
         $this->shortcodeRegistry = new ShortcodeRegistry();
-        new ModualAPI($this->shortcodeRegistry);
+        new ModuleAPI($this->shortcodeRegistry);
         new Editor($this->resources);
         new GridShorcodes($this->resources);
     }

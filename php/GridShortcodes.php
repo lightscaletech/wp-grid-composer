@@ -9,7 +9,7 @@ class GridShorcodes {
         $this->resources = $resources;
 
         $this->registerShortcodes();
-        add_filter('lsgc_register_shortcodes', array($this, "registerModuals"));
+        add_filter('lsgc_register_shortcodes', array($this, "registerModules"));
     }
 
     private function registerShortcodes() {
@@ -48,7 +48,7 @@ class GridShorcodes {
                 'tile_classes' => "lsgc_col_{$num}");
     }
 
-    public function registerModuals($in) {
+    public function registerModules($in) {
         $mods = array();
 
         for ($i = 1; $i <= GridShorcodes::COLS; $i++){
@@ -61,6 +61,6 @@ class GridShorcodes {
             'type' => 'structural',
             'tile_classes' => 'lsgc_row');
 
-        return lsgc_add_moduals($in, $mods);
+        return lsgc_add_modules($in, $mods);
     }
 }
