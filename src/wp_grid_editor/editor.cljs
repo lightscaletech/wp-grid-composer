@@ -24,9 +24,10 @@
    [{:keys [key tile_classes] n :name} elem]
    (h/div
     :class tile_classes
-    (menus/module)
-    (h/h3 (j/cell= (or n key)))
-    (content))))
+    (h/div :class "lsgc_inner"
+     (menus/module)
+     (h/h3 (j/cell= (or n key)))
+     (content)))))
 
 (h/defelem content [{{:keys [content]} :elem}]
   [(menus/module)

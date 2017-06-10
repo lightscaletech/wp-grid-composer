@@ -1,11 +1,12 @@
 .lsgc_row {
     width:100%;
+    overflow:hidden;
 }
 
 .lsgc_col_1, .lsgc_col_2, .lsgc_col_3, .lsgc_col_4, .lsgc_col_5,
 .lsgc_col_6, lsgc_col_7, .lsgc_col_8, .lsgc_col_9, .lsgc_col_10,
 .lsgc_col_11, .lsgc_col_12 {
-
+    float:left;
 }
 
 .lsgc_col_1 {

@@ -1,0 +1,23 @@
+.lsgc_row, .lsgc_col_1, .lsgc_col_2, .lsgc_col_3, .lsgc_col_4, .lsgc_col_5,
+.lsgc_col_6, lsgc_col_7, .lsgc_col_8, .lsgc_col_9, .lsgc_col_10,
+.lsgc_col_11, .lsgc_col_12 {
+}
+
+.lsgc_editor_wrap {
+    margin-top: 1em;
+}
+
+.lsgc_editor_wrap .lsgc_inner {
+    border:1px solid #999;
+    margin: 0.3em;
+    overflow:hidden;
+    min-height: 4em;
+}
+
+.lsgc_editor_wrap h3 {
+    font-size: 1em;
+    padding: 0.1em 0.3em;
+    margin: 0;
+    background-color: #666;
+    color: #DDD;
+}
